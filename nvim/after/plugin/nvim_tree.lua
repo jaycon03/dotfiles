@@ -240,7 +240,7 @@
     }
 
 vim.cmd[[hi NvimTreeNormal guibg=NONE ctermbg=NONE]]
-vim.cmd[[hi NvimTreeWinSeparator guifg=#13111f guibg=NONE]]
+vim.cmd[[hi NvimTreeWinSeparator guifg=#6C7086 guibg=NONE:width]]
 
 vim.keymap.set("n", "<leader>fb", "<cmd>NvimTreeToggle<cr>")
 vim.keymap.set("n", "<leader>ff", "<cmd>NvimTreeFindFile<cr>")

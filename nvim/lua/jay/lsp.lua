@@ -20,7 +20,7 @@ local handlers =  {
 
 require'lspconfig'.clangd.setup{
 	handlers = handlers,
-	on_attach = function() 
+	on_attach = function()
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
 		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
 		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
@@ -33,10 +33,69 @@ require'lspconfig'.clangd.setup{
 	end,
 }
 
-require'lspconfig'.pyright.setup{handlers = handlers}
-require'lspconfig'.texlab.setup{handlers = handlers}
-
--- To instead override globally
+require'lspconfig'.pyright.setup{
+	handlers = handlers,
+	on_attach = function()
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
+		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
+		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
+		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
+		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
+	end,
+}
+require'lspconfig'.texlab.setup{
+	handlers = handlers,
+	on_attach = function()
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
+		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
+		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
+		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
+		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
+	end,
+}
+require'lspconfig'.lua_ls.setup {
+	handlers = handlers,
+	on_attach = function()
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
+		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
+		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
+		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
+		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
+	end,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = 'LuaJIT',
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = {'vim'},
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+}
+--To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
