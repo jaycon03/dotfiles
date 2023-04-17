@@ -25,11 +25,11 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-cmp'
 	use 'saadparwaiz1/cmp_luasnip'
     
-    use {
-	'nvim-tree/nvim-tree.lua',
-	requires = {
-		'nvim-tree/nvim-web-devicons', -- optional
-	}
+	use {
+		'nvim-tree/nvim-tree.lua',
+		requires = {
+			'nvim-tree/nvim-web-devicons', -- optional
+		}
 	}
 
 	use "lervag/vimtex"
@@ -37,11 +37,11 @@ return require('packer').startup(function(use)
 	use 'jiangmiao/auto-pairs'
 
 	use({
-	"L3MON4D3/LuaSnip",
-	-- follow latest release.
-	tag = "v<CurrentMajor>.*",
-	-- install jsregexp (optional!:).
-	run = "make install_jsregexp"
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		tag = "v<CurrentMajor>.*",
+		-- install jsregexp (optional!:).
+		run = "make install_jsregexp"
 	})
 
-    end)
+end)
