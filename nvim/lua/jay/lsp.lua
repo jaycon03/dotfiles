@@ -33,7 +33,7 @@ require'lspconfig'.clangd.setup{
 	end,
 }
 
-require'lspconfig'.pyright.setup{
+require'lspconfig'.pylsp.setup{
 	handlers = handlers,
 	on_attach = function()
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
