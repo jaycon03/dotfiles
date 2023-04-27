@@ -78,8 +78,8 @@ keys = [
 ]
 
 groups =[]
-group_labels = ["", "", "", "", "", "", "" ,"", "9", "10"]
-group_names = [i for i in "1234567890"]
+group_labels = ["", "", "", "", "", "", "" , "9", "10"] #"",
+group_names = [i for i in "1234567"]
 for i in range(len(group_names)):
     groups.append(
             Group(
@@ -87,6 +87,10 @@ for i in range(len(group_names)):
                 label=group_labels[i]
                 )
             )
+
+groups.append(Group("8", layout="max", label=""))
+groups.append(Group("9", label="9"))
+groups.append(Group("0", label="10"))
 
 for i in groups:
     keys.extend(
