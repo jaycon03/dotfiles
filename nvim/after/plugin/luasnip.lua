@@ -419,6 +419,17 @@ ls.add_snippets(
 --cpp snippets
 ls.add_snippets(
 "cpp", {
+	--include
+	s({trig="inc"},
+	fmt(
+	[[
+		#include<{}>
+	]],
+	{
+		i(1)
+	}
+	)
+	),
 
 	--main function
 	s({trig = "main"},
