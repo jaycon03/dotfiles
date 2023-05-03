@@ -196,13 +196,13 @@ widget_list=[
         widget.Spacer(
             background=None,
         ),
-        widget.Mpris2(
-            name="spotify",
-            pause_text="Paused", 
-            display_metadata=["xesam:title", "xesam:artist"],
-            objname="org.mpris.MediaPlayer2.spotify",
-            foreground='89B4FA', background=None,
-        ),
+        #widget.Mpris2(
+        #    NAME="spotify",
+        #    pause_text="Paused", 
+        #    display_metadata=["xesam:title", "xesam:artist"],
+        #    objname="org.mpris.MediaPlayer2.spotify",
+        #    foreground='89B4FA', background=None,
+        #),
         widget.Spacer(
             background=None,
         ),
@@ -289,7 +289,6 @@ widget_list=[
         ),
         widget.Wlan(
             format='{essid}',
-            
         ),
         widget.Spacer(
             length=10,
