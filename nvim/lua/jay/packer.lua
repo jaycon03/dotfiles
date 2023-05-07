@@ -51,5 +51,19 @@ return require('packer').startup(function(use)
 		use 'nvim-telescope/telescope-dap.nvim'
 		use 'rcarriga/nvim-dap-ui'
 		use 'theHamsta/nvim-dap-virtual-text'
-
+		--Mason
+		use {
+			"williamboman/mason.nvim",
+			run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+		}
+		--Harpoon
+		use 'nvim-lua/plenary.nvim'
+		use 'ThePrimeagen/harpoon'
+		--lualine
+		use {
+			'nvim-lualine/lualine.nvim',
+			requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+		--undotree
+		use 'mbbill/undotree'
+}
 end)
