@@ -34,3 +34,6 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>p", "\"+p")
 vim.keymap.set("v", "<leader>p", "\"+p")
+--add j k movements to jumpylist
+vim.keymap.set("n", "j", ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'j'<CR>")
+vim.keymap.set("n", "k", ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'k'<CR>")
