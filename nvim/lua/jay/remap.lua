@@ -35,8 +35,8 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>p", "\"+p")
 vim.keymap.set("v", "<leader>p", "\"+p")
 --add j k movements to jumpylist
-vim.keymap.set("n", "j", ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'j'<CR>")
-vim.keymap.set("n", "k", ":<C-U>execute 'normal!' (v:count > 1 ? \"m'\" . v:count : '') . 'k'<CR>")
+vim.keymap.set( 'n', 'j', [[v:count ? (v:count >= 2 ? "m'" . v:count : '') . 'jzz' : 'jzz']], { noremap = true, expr = true })
+vim.keymap.set( 'n', 'k', [[v:count ? (v:count >= 2 ? "m'" . v:count : '') . 'kzz' : 'kzz']], { noremap = true, expr = true })
 --kesizing splits
 vim.keymap.set("n", "<C-+>", "<cmd>vertical resize +5<CR>")
 vim.keymap.set("n", "<C-->", "<cmd>vertical resize -5<CR>")

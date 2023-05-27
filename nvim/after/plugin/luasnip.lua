@@ -149,6 +149,28 @@ ls.add_snippets(
 			{condition = line_begin}
 		),
 
+		--create figure environmet
+		s({trig = "fig", snippetType= "autosnippet"},
+		fmta(
+			[[
+				\begin{figure}
+					\centering
+					\includegraphics[width=<>\textwidth]{<>}
+					\caption{<>}
+					\label{fig:<>}
+				\end{figure}
+			]],
+			{
+				i(1),
+				i(2),
+				i(3, "my_caption"),
+				i(4, "my_label")
+			}
+		),
+		{condition = line_begin}
+
+		),
+
 		--texttt 
 		s({trig = "tt"},
 		fmta(
@@ -435,7 +457,7 @@ ls.add_snippets(
 	s({trig = "main"},
 	fmta(
 	[[
-		int main(){
+		int main() {
 			<>
 			return 0;
 		}
