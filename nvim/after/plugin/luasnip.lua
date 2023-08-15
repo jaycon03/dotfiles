@@ -438,14 +438,14 @@ ls.add_snippets(
 	}
 )
 
---cpp snippets
+-- c snippets
 ls.add_snippets(
-"cpp", {
+"c", {
 	--include
 	s({trig="inc"},
 	fmt(
 	[[
-		#include<{}>
+		#include <{}>
 	]],
 	{
 		i(1)
@@ -506,7 +506,7 @@ ls.add_snippets(
 	),
 
 	--index based for loop
-	s({trig = "fi", snippetType="autosnippet"},
+	s({trig = "for", snippetType="autosnippet"},
 	fmta(
 	[[
 	for (<>; <>; <>) <>
@@ -545,16 +545,62 @@ ls.add_snippets(
 	{condition = line_begin}
 	),
 
-	--range based for loop
-	s({trig = "fr", snippetType="autosnippet"},
+	s({trig = "?", snippetType="autosnippet"},
 	fmta(
+		"? <> : <>",
+		{
+			i(1, "then"),
+			i(2, "else")
+		}
+	)
+	),
+}
+)
+
+--cpp snippets
+ls.add_snippets(
+"cpp", {
+	--include
+	s({trig="inc"},
+	fmt(
 	[[
-	for (<> : <>) <>
+		#include <{}>
 	]],
 	{
-		i(1, "element"),
-		i(2, "container"),
-		c(3, {
+		i(1)
+	}
+	)
+	),
+
+	--define cout << arg << endl as print
+	s({trig = "pm"},
+		t"#define print(arg) std::cout << arg << std::endl;"
+	),
+
+	--main function
+	s({trig = "main"},
+	fmta(
+	[[
+		int main() {
+			<>
+			return 0;
+		}
+	]],
+	{
+		i(0)
+	}
+	)
+	),
+
+	--index based for loop
+	s({trig = "for", snippetType="autosnippet"},
+	fmta(
+	[[
+	for (<>) <>
+	]],
+	{
+		i(1, "start"),
+		c(2, {
 			sn(nil,
 			fmta(
 			[[
@@ -569,15 +615,15 @@ ls.add_snippets(
 			sn(nil,
 			fmta(
 			[[
-				
+			
+
 			<><>
 			]],
 			{
 				t("  "),
 				i(1, "//code")
 			}
-			)
-			)
+			))
 		})
 	}
 	),

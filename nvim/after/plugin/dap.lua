@@ -44,6 +44,10 @@ dap.configurations.cpp = {
 	},
 }
 
+dap.configurations.rust = dap.configurations.cpp
+
+dap.configurations.c = dap.configurations.cpp
+
 --keybindings
 vim.keymap.set("n", "<F8>", ":lua require'dap'.continue()<CR>")
 vim.keymap.set("n", "<F9>", ":lua require'dap'.step_over()<CR>")

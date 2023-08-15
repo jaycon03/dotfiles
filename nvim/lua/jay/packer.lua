@@ -68,4 +68,5 @@ return require('packer').startup(function(use)
 	}
 	use 'mbbill/undotree'
 	use 'tpope/vim-fugitive'
+--	use 'elkowar/yuck.vim'
 end)
