@@ -61,8 +61,8 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-"), desc="Lower Volume"),
     Key([], "XF86AudioMute", lazy.spawn("amixer sset Master toggle"), desc="Mute"),
     # brightness controls
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight +5"), desc="turn up monitor brightness"),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -5"), desc="turn down monitor brightness"),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +10%"), desc="turn up monitor brightness"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 10%-"), desc="turn down monitor brightness"),
     # app shortcuts
     Key([mod], "w", lazy.spawn(browser), desc="open browser"),
     Key([mod], "m", lazy.spawn(mail_client), desc="open mail_client"),
@@ -313,13 +313,16 @@ widget_list=[
 ]
 
 screens = [
-    Screen(top=bar.Bar(
-                widget_list,
-                background='13111f',
-                size=28,
-                border_width=[0, 0, 0, 0],
+    Screen(
+#                top=bar.Bar(
+#                widget_list,
+#                background='13111f',
+#                size=28,
+#                border_width=[0, 0, 0, 0],
+                
+                left = bar.Gap(50)
             ),
-    ),
+#    ),
 ]
 
 # Drag floating layouts.
@@ -359,7 +362,7 @@ auto_minimize = True
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/autostart.sh'])
+    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
 @hook.subscribe.client_new
 def client_to_workspace(client):
