@@ -11,6 +11,7 @@
 // Variable Color's
 $background: #1A1B26;
 $foreground: #A9B1D6;
+$focused: #7DCFFF;
 
 $black: #24283B;
 $gray: #565F89;
@@ -33,42 +34,118 @@ $white: $foreground;
     color: $cyan;
     font-family: "Font Awesome 6 Pro";
     font-size: 1.7em;
-    padding: 1rem 6 1rem 0;
+    padding: 1rem 10 1rem 3;
 }
 
 // Workspaces
 .works {
 font-family: "Font Awesome 6 Pro";
-padding: .2rem .7rem .2rem .7rem;
+padding: .5rem .9rem .1rem .7rem;
 background-color: $black;
 border-radius: 5px;
 }
 
-.0 , .01, .02, .03, .04, .05, .06,
-.011, .022, .033, .044, .055, .066{
-  margin: .55rem 0 .55rem 0;
+/*.0 , .00, .01, .02, .03, .04, .05,
+.000, .011, .022, .033, .044, .055{
+  margin: .65rem 4 .55rem 0;
+}*/
+
+.00e, .01e, .02e, .03e, .04e, .05e, .06e, .07e, .08e, .09e,
+.0e0, .0e1, .0e2, .0e3, .0e4, .0e5, .0e6, .0e7, .0e8, .0e9,
+.000, .011, .022, .033, .044, .055, .066, .077, .088, .099{
 }
 
-/* Unoccupied */
+/* Unoccupied 
 .0 {
-color: $gray;
-}
-
-/* Occupied */
-.01, .02, .03, .04, .05, .06 {
   color: $gray;
+  font-size: 1.4em;
+}*/
+
+/* Occupied not focused */
+.00e, .01e, .02e, .03e, .04e, .05e, .06e, .07e, .08e, .09e{
+  color: $foreground;
+}
+ /* Focused not occupied */ 
+.0e0, .0e1, .0e2, .0e3, .0e4, .0e5, .0e6, .0e7, .0e8, .0e9,{
+	color: $focused;
 }
 
 /* Focused */
+.000,
 .011,
 .022,
 .033,
 .044,
 .055,
-.066 {
-  color: $foreground;
+.066,
+.077,
+.088,
+.099{
+  color: $focused;
 }
 
+.00e,
+.0e0,
+.000{
+	font-size: 1.4em;
+	margin: .25rem 4 .55rem 0;
+}
+.01e,
+.0e1,
+.011{
+	font-size: 1.4em;
+	margin: .45rem 6 .55rem 0;
+}
+.02e,
+.0e2,
+.022{
+	font-size: 1.4em;
+	margin: .55rem 3 .55rem 0;
+}
+.03e,
+.0e3,
+.033{
+	font-size: 1.4em;
+	margin: .65rem 5 .55rem 0;
+}
+.04e,
+.0e4,
+.044{
+	font-size: 1.5em;
+	margin: .45rem 6 .55rem 0;
+}
+.05e,
+.0e5,
+.055{
+	font-size: 1.7em;
+	margin: .30rem 3 .55rem 0;
+}
+.06e,
+.0e6,
+.066{
+	font-size: 1.4em;
+	margin: .45rem -2 .55rem 0;
+}
+.07e,
+.0e7,
+.077{
+	font-size: 1.6em;
+	margin: .50rem 3.8 .55rem 0;
+}
+.08e,
+.0e8,
+.088{
+	font-size: 1.65em;
+	margin: .30rem 4 .55rem 0;
+}
+.09e,
+.0e9,
+.099{
+	font-size: 1.5em;
+	margin: .25rem 3 .55rem 0;
+}
+
+/*
 .0:nth-child(1),
 .0:nth-child(3){
   font-size: 1.5em;
@@ -82,27 +159,31 @@ color: $gray;
 }
 .0:nth-child(6){
   font-size: 1.7em;
+}*/
+/*.00,
+.000{
+  font-size: 1.5em;
 }
 .01,
-.011,
-.03,
-.033{
-  font-size: 1.5em;
+.011{
+  font-size: 1.4em;
 }
 .02,
 .022{
   font-size: 1.4em;
 }
+.03,
+.033{
+  font-size: 1.4em;
+}
 .04,
+.044{
+  font-size: 1.4em;
+}
 .05,
-.044,
 .055{
   font-size: 1.6em;
-}
-.06,
-.066{
-  font-size: 1.7em;
-}
+}*/
 
 // Control Panel
 .control {
@@ -115,7 +196,7 @@ border-radius: 5px;
 .bat{
   font-family: JetBrainsMono Nerd Font;
   font-size: 1.1em;
-  padding-right: .5rem;
+  padding: 0rem .523rem .2rem 0rem;
   color: $blue;
 }
 .wifi-icon{
