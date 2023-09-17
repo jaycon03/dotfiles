@@ -9,7 +9,7 @@
 }
 
 // Variable Color's
-$background: #1A1B26;
+$background: #13111f;
 $foreground: #A9B1D6;
 $focused: #7DCFFF;
 
@@ -22,19 +22,23 @@ $blue: #7AA2F7;
 $magenta: #BB9AF7;
 $cyan: #7DCFFF;
 $white: $foreground;
+$teal: #71C9B1;
+$orange: #E19177;
+
 
 // EWW BAR
 .eww_bar{
   background-color: $background;
   padding: .3rem;
+  border-radius: 10px;
 }
 
 // Launcher
-.launcher_icon{
+.update_icon{
     color: $cyan;
     font-family: "Font Awesome 6 Pro";
     font-size: 1.7em;
-    padding: 1rem 10 1rem 3;
+    padding: .75rem 11.5 1rem 3;
 }
 
 // Workspaces
@@ -43,6 +47,7 @@ font-family: "Font Awesome 6 Pro";
 padding: .5rem .9rem .1rem .7rem;
 background-color: $black;
 border-radius: 5px;
+margin-top: 4px;
 }
 
 /*.0 , .00, .01, .02, .03, .04, .05,
@@ -123,7 +128,7 @@ border-radius: 5px;
 .06e,
 .0e6,
 .066{
-	font-size: 1.4em;
+	font-size: 1.23em;
 	margin: .45rem -2 .55rem 0;
 }
 .07e,
@@ -145,46 +150,6 @@ border-radius: 5px;
 	margin: .25rem 3 .55rem 0;
 }
 
-/*
-.0:nth-child(1),
-.0:nth-child(3){
-  font-size: 1.5em;
-}
-.0:nth-child(2){
-  font-size: 1.4em;
-}
-.0:nth-child(4),
-.0:nth-child(5){
-  font-size: 1.6em;
-}
-.0:nth-child(6){
-  font-size: 1.7em;
-}*/
-/*.00,
-.000{
-  font-size: 1.5em;
-}
-.01,
-.011{
-  font-size: 1.4em;
-}
-.02,
-.022{
-  font-size: 1.4em;
-}
-.03,
-.033{
-  font-size: 1.4em;
-}
-.04,
-.044{
-  font-size: 1.4em;
-}
-.05,
-.055{
-  font-size: 1.6em;
-}*/
-
 // Control Panel
 .control {
 padding: .5rem;
@@ -196,20 +161,24 @@ border-radius: 5px;
 .bat{
   font-family: JetBrainsMono Nerd Font;
   font-size: 1.1em;
-  padding: 0rem .523rem .2rem 0rem;
-  color: $blue;
+  padding: 0rem .51rem .2rem 0rem;
+  color: $teal;
 }
 .wifi-icon{
   margin: .2rem 6 .5rem 0;
   color: $magenta;
+}
+.bluetooth-icon{
+	margin: 0rem .1 .4rem 0;
+	color: $blue;
 }
 .brightness-icon{
   margin: .0rem 0 .8rem 0;
   color: $yellow;
 }
 .volume-icon{
-  margin: .2rem 0 .2rem 0;
-  color: $green;
+  margin: -.3rem 0 .2rem 0;
+  color: $orange;
 }
 scale trough {
   all: unset;
@@ -224,7 +193,7 @@ scale trough {
   border-radius: 5px;
 }
 .volbar trough highlight {
-  background-color: $green;
+  background-color: $orange;
   border-radius: 5px;
 }
 
@@ -246,6 +215,7 @@ scale trough {
   font-family: Comic Mono;
   font-size: 1em;
   font-weight: bold;
+  border-radius: 10px;
 
   .cal-inner-box {
       padding: 1rem 1rem .2rem;
@@ -280,7 +250,7 @@ font-weight: bold;
 }
 
 calendar:indeterminate {
-color: $background;
+color: $white;
 }
 
 // Powermenu
