@@ -583,7 +583,6 @@ ls.add_snippets(
 	[[
 		int main() {
 			<>
-			return 0;
 		}
 	]],
 	{
@@ -592,14 +591,14 @@ ls.add_snippets(
 	)
 	),
 
-	--index based for loop
+	--for loop
 	s({trig = "for", snippetType="autosnippet"},
 	fmta(
 	[[
 	for (<>) <>
 	]],
 	{
-		i(1, "start"),
+		i(1),
 		c(2, {
 			sn(nil,
 			fmta(

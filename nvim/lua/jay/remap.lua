@@ -42,3 +42,5 @@ vim.keymap.set("n", "<C-+>", "<cmd>vertical resize +5<CR>")
 vim.keymap.set("n", "<C-->", "<cmd>vertical resize -5<CR>")
 vim.keymap.set("n", "<C-ü>", "<cmd>resize -5<CR>")
 vim.keymap.set("n", "<C-ä>", "<cmd>resize +5<CR>")
+
+vim.keymap.set('n', '<leader><CR>', '<cmd>call jukit#send#selection()<CR>')

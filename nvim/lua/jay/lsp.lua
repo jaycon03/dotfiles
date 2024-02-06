@@ -109,6 +109,23 @@ require'lspconfig'.lua_ls.setup {
 		},
 	},
 }
+
+require'lspconfig'.intelephense.setup{
+	handlers = handlers,
+	on_attach = function()
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
+		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
+		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
+		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
+		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
+		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
+	end,
+}
+
+
 --To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)

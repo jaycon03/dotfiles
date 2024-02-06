@@ -5,9 +5,9 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
-	-- fuzzy finder
+	--fuzzy finder
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+		'nvim-telescope/telescope.nvim', tag = '0.1.4',
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
@@ -26,11 +26,15 @@ return require('packer').startup(function(use)
 	use 'saadparwaiz1/cmp_luasnip'
 	--file manager
 	use {
-		'nvim-tree/nvim-tree.lua',
-		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional
-		}
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 	}
+		--use {
+		--	'nvim-tree/nvim-tree.lua',
+		--	requires = {
+		--		'nvim-tree/nvim-web-devicons', -- optional
+		--	}
+		--}
 	--latex engine
 	use "lervag/vimtex"
 	--autocompletion for parenthesis etc.
@@ -58,8 +62,8 @@ return require('packer').startup(function(use)
 		run = ":MasonUpdate" -- :MasonUpdate updates registry contents
 	}
 	--Harpoon
-	use 'nvim-lua/plenary.nvim'
-	use 'ThePrimeagen/harpoon'
+	--use 'nvim-lua/plenary.nvim'1
+	--use 'ThePrimeagen/harpoon'
 	--lualine
 	use {
 		'nvim-lualine/lualine.nvim',
@@ -67,6 +71,10 @@ return require('packer').startup(function(use)
 		--undotree
 	}
 	use 'mbbill/undotree'
-	use 'tpope/vim-fugitive'
---	use 'elkowar/yuck.vim'
+	--use 'tpope/vim-fugitive'
+	use 'elkowar/yuck.vim'
+	--jupyter notebooks
+--	use('luk400/vim-jukit')
+	--python venv selctor
+	use 'linux-cultist/venv-selector.nvim'
 end)
