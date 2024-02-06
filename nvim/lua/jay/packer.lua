@@ -11,19 +11,48 @@ return require('packer').startup(function(use)
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
+
 	--colortheme
 	use { "catppuccin/nvim", as = "catppuccin" }
+
 	--parser
 	use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
 	--lsp
-	use 'neovim/nvim-lspconfig'
+	--use 'neovim/nvim-lspconfig'
 	--auto completion
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-nvim-lua'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/nvim-cmp'
-	use 'saadparwaiz1/cmp_luasnip'
+	--use 'hrsh7th/cmp-nvim-lsp'
+	--use 'hrsh7th/cmp-nvim-lua'
+	--use 'hrsh7th/cmp-buffer'
+	--use 'hrsh7th/cmp-path'
+	--use 'hrsh7th/nvim-cmp'
+	--use 'saadparwaiz1/cmp_luasnip'
+	
+	--lsp zero
+	use {
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v3.x',
+		requires = {
+			--- Uncomment the two plugins below if you want to manage the language servers from neovim
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
+
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'L3MON4D3/LuaSnip'},
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-path'},
+			{'hrsh7th/cmp-nvim-lua'},
+			{'saadparwaiz1/cmp_luasnip'},
+			{'rafamadriz/friendly-snippets'},
+
+
+		}
+	}
+
 	--file manager
 	use {
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -35,6 +64,7 @@ return require('packer').startup(function(use)
 		--		'nvim-tree/nvim-web-devicons', -- optional
 		--	}
 		--}
+		
 	--latex engine
 	use "lervag/vimtex"
 	--autocompletion for parenthesis etc.
@@ -56,14 +86,17 @@ return require('packer').startup(function(use)
 	use 'rcarriga/nvim-dap-ui'
 	use 'theHamsta/nvim-dap-virtual-text'
 	use 'mfussenegger/nvim-dap-python'
+	
 	--Mason
-	use {
-		"williamboman/mason.nvim",
-		run = ":MasonUpdate" -- :MasonUpdate updates registry contents
-	}
+	--use {
+	--	"williamboman/mason.nvim",
+	--	run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+	--}
+	
 	--Harpoon
 	--use 'nvim-lua/plenary.nvim'1
 	--use 'ThePrimeagen/harpoon'
+	
 	--lualine
 	use {
 		'nvim-lualine/lualine.nvim',
@@ -78,3 +111,4 @@ return require('packer').startup(function(use)
 	--python venv selctor
 	use 'linux-cultist/venv-selector.nvim'
 end)
+

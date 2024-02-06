@@ -1,135 +1,54 @@
-vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guifg=#13111f]]
-vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=#313244 guibg=#13111f]]
+local lsp_zero = require('lsp-zero')
 
-local border = {
-      {"🭽", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {"🭾", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {"🭿", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {"🭼", "FloatBorder"},
-      {"▏", "FloatBorder"},
-}
+lsp_zero.on_attach(function(client, bufnr)
+  local opts = {buffer = bufnr, remap = false}
 
--- LSP settings (for overriding per client)
-local handlers =  {
-  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = border}),
-  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = border }),
-}
+  vim.keymap.set("n", "<leader>jd", function() vim.lsp.buf.definition() end, opts)
+  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
+  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+  vim.keymap.set("n", "<leader>jn", function() vim.diagnostic.goto_next() end, opts)
+  vim.keymap.set("n", "<leader>jp", function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set("n", "<leader>ref", function() vim.lsp.buf.references() end, opts)
+  vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+end)
 
-require'lspconfig'.clangd.setup{
-	handlers = handlers,
-	on_attach = function()
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
-		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
-		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
-		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
-		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
-	end,
-}
+-- to learn how to use mason.nvim with lsp-zero
+-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = {},
+  handlers = {
+    lsp_zero.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp_zero.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  }
+})
 
-require'lspconfig'.rust_analyzer.setup{
-	handlers = handlers,
-	on_attach = function()
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
-		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
-		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
-		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
-		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
-	end,
-}
-require'lspconfig'.pylsp.setup{
-	handlers = handlers,
-	on_attach = function()
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
-		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
-		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
-		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
-		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
-	end,
-}
-require'lspconfig'.texlab.setup{
-	handlers = handlers,
-	on_attach = function()
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
-		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
-		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
-		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
-		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
-	end,
-}
-require'lspconfig'.lua_ls.setup {
-	handlers = handlers,
-	on_attach = function()
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
-		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
-		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
-		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
-		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
-	end,
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = {'vim'},
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-}
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
-require'lspconfig'.intelephense.setup{
-	handlers = handlers,
-	on_attach = function()
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
-		vim.keymap.set("n", "<leader>jd", vim.lsp.buf.definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>jt", vim.lsp.buf.type_definition, {buffer = 0})
-		vim.keymap.set("n", "<leader>ji", vim.lsp.buf.implementation, {buffer = 0})
-		vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {buffer = 0})
-		vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {buffer = 0})
-		vim.keymap.set("n", "<leader>dl", "<cmd>Telescope diagnostics<cr>", {buffer = 0})
-		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
-	end,
-}
+-- this is the function that loads the extra snippets to luasnip
+-- from rafamadriz/friendly-snippets
+require('luasnip.loaders.from_vscode').lazy_load()
 
-
---To instead override globally
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or border
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
+cmp.setup({
+  sources = {
+    {name = 'path'},
+    {name = 'nvim_lsp'},
+    {name = 'nvim_lua'},
+    {name = 'luasnip', keyword_length = 2},
+    {name = 'buffer', keyword_length = 3},
+  },
+  formatting = lsp_zero.cmp_format(),
+  mapping = cmp.mapping.preset.insert({
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.complete(),
+  }),
+})
