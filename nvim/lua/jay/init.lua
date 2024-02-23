@@ -1,5 +1,4 @@
 require("jay.remap")
 require("jay.set")
-require("jay.autocmd")
-require("jay.lsp")
-require("jay.packer")
+
+require("jay.lazy_init")
