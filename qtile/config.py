@@ -15,7 +15,7 @@ from libqtile.backend.base import Window
 mod = "mod4"
 terminal = "kitty" 
 browser = "firefox"
-mail_client = "mailspring"
+mail_client = "betterbird"
 filemanager = "thunar"
 
 keys = [
@@ -41,15 +41,12 @@ keys = [
     Key(["mod1", "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key(["mod1", "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod, "control"], "n", lazy.layout.reset(), desc="Reset all window sizes"),
-    Key(["mod1", "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key(["mod1", "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod, "control"], "n", lazy.layout.reset(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], "BackSpace", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
@@ -67,6 +64,8 @@ keys = [
     Key([mod], "w", lazy.spawn(browser), desc="open browser"),
     Key([mod], "m", lazy.spawn(mail_client), desc="open mail_client"),
     Key([mod], "s", lazy.spawn("spotify"), desc="open mail_client"),
+    Key([mod], "p", lazy.spawn('kitty --listen-on=unix:@"$(date +%s%N)" -o allow_remote_control=yes'), desc="open jukit kitty session"),
+
     Key([], "Print", lazy.spawn("scrot ~/Pictures/Screenshots/%Y-%m-%d-%T-screenshot.png"), desc="screenshot"),
     Key([mod], "Print", lazy.spawn("flameshot gui"), desc="open flameshot"),
     # rofi application menu
@@ -89,7 +88,7 @@ for i in range(len(group_names)):
             )
 
 groups.append(Group("8", layout="max", label=""))
-groups.append(Group("9", label="9"))
+groups.append(Group("9", label="9", layout="max"))
 groups.append(Group("0", label="10"))
 
 for i in groups:
@@ -320,7 +319,7 @@ screens = [
 #                size=28,
 #                border_width=[0, 0, 0, 0],
                 
-                left = bar.Gap(50)
+                left = bar.Gap(55) #55
             ),
 #    ),
 ]
@@ -366,19 +365,23 @@ def autostart():
 
 @hook.subscribe.client_new
 def client_to_workspace(client):
-    if client.name == 'Mozilla Firefox':
+    if client.name == terminal:
+        client.togroup("1", switch_group = True)
+    elif client.name == 'Mozilla Firefox':
         client.togroup("2", switch_group = True)
-    elif client.name == 'Mailspring':
+    elif client.name == 'Betterbird':
         client.togroup("4", switch_group = True)
     elif client.name == 'Telegram':
         client.togroup("5", switch_group = True)
     elif client.name == 'WhatsApp for Linux':
         client.togroup("5", switch_group = True)
-        
+    elif client.name == "webcord":
+        client.togroup("6", switch_group = True)
+
 @hook.subscribe.client_name_updated
 def move_spotify_workaround(client):
     if client.name.lower() == 'spotify':
-        client.togroup("8", switch_group = True)
+        client.togroup("9", switch_group = True)
 
 wl_input_rules = None
 wmname = "LG3D"
